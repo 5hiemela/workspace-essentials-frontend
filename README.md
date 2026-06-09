@@ -1,4 +1,4 @@
-# E-Commerce Frontend Application
+# E-Commerce Frontend App
 
 The user interface for a full-stack e-commerce store. It allows users to browse products, manage a shopping cart, and interact directly with backend services.
 
