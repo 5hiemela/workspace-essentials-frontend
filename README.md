@@ -32,7 +32,7 @@ The frontend operates independently from the backend. The user interface runs en
 * [x] Initialize React project with Vite
 * [x] Set up Git/GitHub repositories and independent version control
 * [X] Establish project directory structure (`components`, `pages`, `services`, `assets`)
-* [ ] Select and configure global styling framework
+* [X] Select and configure global styling framework
 
 ### Phase 2: Core UI Components
 * [ ] Build navigation bar and footer
