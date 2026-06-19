@@ -21,10 +21,7 @@ function ProductDetailPage() {
 
   // Handle firing the item up to the global cloud state
   const handleAddToCart = () => {
-    // Loop through the selected quantity amount and add it
-    for (let i = 0; i < quantity; i++) {
-      addToCart(product);
-    }
+      addToCart(product, quantity);
   };
 
   return (

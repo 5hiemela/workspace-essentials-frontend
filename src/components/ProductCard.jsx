@@ -5,7 +5,7 @@ function ProductCard({ product }) {
   const { addToCart } = useCart(); // Pulls out the global action
 
   const handleQuickAdd = (e) => {
-    e.preventDefault(); // Stops the click from navigating to the product detail page
+    e.preventDefault();
     addToCart(product);
   };
 

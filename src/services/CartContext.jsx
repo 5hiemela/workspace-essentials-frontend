@@ -6,19 +6,24 @@ export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
   const [toastMessage, setToastMessage] = useState(""); // Tracks active alert message
 
-  const addToCart = (product) => {
+  // Add qty parameter with a fallback default of 1
+  const addToCart = (product, qty = 1) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
       if (existingItem) {
         return prevCart.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === product.id ? { ...item, quantity: item.quantity + qty } : item
         );
       }
-      return [...prevCart, { ...product, quantity: 1 }];
+      return [...prevCart, { ...product, quantity: qty }];
     });
 
-    // Trigger custom toast notification banner
-    setToastMessage(`Added ${product.name} to cart!`);
+    // Update message text based on quantity
+    const messageText = qty > 1
+        ? `Added ${qty}x ${product.name} to cart!`
+        : `Added ${product.name} to cart!`;
+        
+    setToastMessage(messageText);
     
     // Auto-clear the toast notification after 2.5 seconds
     setTimeout(() => {
@@ -32,7 +37,6 @@ export function CartProvider({ children }) {
     <CartContext.Provider value={{ cart, addToCart, cartCount }}>
       {children}
       
-      {/* Sleek, dynamic floating toast component banner */}
       {toastMessage && (
         <div className="fixed bottom-5 right-5 bg-stone-900 text-stone-100 text-sm font-medium px-5 py-3.5 rounded-xl shadow-xl z-50 flex items-center gap-2 border border-stone-800 animate-fade-in-up">
           <span className="text-emerald-400">✓</span> {toastMessage}
