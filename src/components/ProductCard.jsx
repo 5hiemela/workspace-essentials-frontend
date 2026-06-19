@@ -1,15 +1,24 @@
-function ProductCard() {
-  const productName = "Mechanical Keyboard (Linear)";
-  const price = 89.99;
+function ProductCard({ product }) {
+  // Destructure the product details out of the prop object
+  const { name, price, description } = product;
 
   return (
-    <div className="border border-stone-200 p-6 rounded-xl max-w-xs bg-white shadow-sm hover:shadow-md transition-shadow text-left">
-      <h3 className="font-semibold text-stone-800 text-lg mb-1">{productName}</h3>
-      <p className="text-stone-600 font-medium mb-4">${price}</p>
-      {/* Changed button color from bg-amber-600 to bg-emerald-700 */}
-      <button className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-medium py-2 px-4 rounded-lg transition-colors text-center text-sm">
-        Add to Cart
-      </button>
+    <div className="border border-stone-200 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow text-left flex flex-col justify-between h-full">
+      <div>
+        {/* Placeholder for product image */}
+        <div className="w-full h-40 bg-stone-100 rounded-lg mb-4 flex items-center justify-center text-stone-400 text-sm font-medium">
+          Image Placeholder
+        </div>
+        <h3 className="font-semibold text-stone-800 text-lg mb-1 leading-snug">{name}</h3>
+        <p className="text-stone-500 text-xs mb-3 line-clamp-2">{description}</p>
+      </div>
+      
+      <div className="mt-4">
+        <p className="text-stone-800 font-semibold text-xl mb-3">${price.toFixed(2)}</p>
+        <button className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-medium py-2 px-4 rounded-lg transition-colors text-center text-sm">
+          Add to Cart
+        </button>
+      </div>
     </div>
   );
 }
