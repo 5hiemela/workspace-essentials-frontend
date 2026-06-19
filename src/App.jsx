@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import CatalogPage from "./pages/CatalogPage";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <main>
         <CatalogPage />
       </main>
+      <Footer />
     </div>
   );
 }
