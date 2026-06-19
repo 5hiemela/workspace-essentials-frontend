@@ -35,7 +35,7 @@ The frontend operates independently from the backend. The user interface runs en
 * [X] Select and configure global styling framework
 
 ### Phase 2: Core UI Components
-* [ ] Build navigation bar and footer
+* [X] Build navigation bar and footer
 * [ ] Design product grid and catalog cards
 * [ ] Implement product detail view pages
 
