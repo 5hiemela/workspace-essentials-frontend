@@ -1,12 +1,14 @@
 function ProductCard() {
-  const productName = "Premium Coffee Beans";
-  const price = 14.99;
+  const productName = "Mechanical Keyboard (Linear)";
+  const price = 89.99;
 
   return (
-    <div style={{ border: "1px solid #ccc", padding: "16px", borderRadius: "8px", maxWidth: "200px" }}>
-      <h3>{productName}</h3>
-      <p>${price}</p>
-      <button>Add to Cart</button>
+    <div className="border border-stone-200 p-6 rounded-xl max-w-xs bg-white shadow-sm hover:shadow-md transition-shadow text-left">
+      <h3 className="font-semibold text-stone-800 text-lg mb-1">{productName}</h3>
+      <p className="text-stone-600 font-medium mb-4">${price}</p>
+      <button className="w-full bg-amber-600 hover:bg-amber-700 text-white font-medium py-2 px-4 rounded-lg transition-colors text-center text-sm">
+        Add to Cart
+      </button>
     </div>
   );
 }
