@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useCart } from "../services/CartContext"; // Import custom hook
 
 function ProductDetailPage() {
-  // Pulls the dynamic :id directly out of the browser URL bar
   const { id } = useParams();
+  const { addToCart } = useCart(); // Pull the global add function out of context
+  
+  // Local state to track selected quantity (default to 1)
+  const [quantity, setQuantity] = useState(1);
 
-  // Temporary lookup array mimicking a backend database query by ID
   const sampleProducts = [
     { id: 1, name: "Mechanical Keyboard (Linear)", price: 89.99, description: "Hot-swappable switches with dense, sound-dampening foam layers." },
     { id: 2, name: "Premium Felt Desk Mat", price: 34.50, description: "Eco-friendly merino wool felt protects your desk and upgrades your mouse glide." },
@@ -12,13 +16,19 @@ function ProductDetailPage() {
     { id: 4, name: "Walnut Monitor Riser", price: 79.99, description: "Solid hardwood construction with integrated slots for cable management." }
   ];
 
-  // Find the product matching the ID from the URL
   const product = sampleProducts.find((p) => p.id === parseInt(id)) || sampleProducts[0];
   const { name, price, description } = product;
 
+  // Handle firing the item up to the global cloud state
+  const handleAddToCart = () => {
+    // Loop through the selected quantity amount and add it
+    for (let i = 0; i < quantity; i++) {
+      addToCart(product);
+    }
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-6 py-10 text-left">
-      {/* Link back home using real router configuration */}
       <Link 
         to="/"
         className="text-sm font-medium text-emerald-700 hover:text-emerald-800 transition-colors inline-flex items-center gap-1 mb-6"
@@ -59,9 +69,27 @@ function ProductDetailPage() {
                 <span className="text-stone-800 font-semibold">2-Year Limited Coverage</span>
               </div>
             </div>
+
+            {/* Quantity Selector Dropdown Matrix */}
+            <div className="flex items-center gap-3 mb-6">
+              <label htmlFor="quantity" className="text-sm font-medium text-stone-600">Quantity:</label>
+              <select 
+                id="quantity"
+                value={quantity}
+                onChange={(e) => setQuantity(parseInt(e.target.value))}
+                className="bg-white border border-stone-300 text-stone-800 py-1.5 px-3 rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent"
+              >
+                {[1, 2, 3, 4, 5].map((num) => (
+                  <option key={num} value={num}>{num}</option>
+                ))}
+              </select>
+            </div>
           </div>
 
-          <button className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-3 px-6 rounded-xl transition-colors text-center text-sm shadow-sm mt-4">
+          <button 
+            onClick={handleAddToCart}
+            className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-3 px-6 rounded-xl transition-colors text-center text-sm shadow-sm"
+          >
             Add to Cart
           </button>
         </div>

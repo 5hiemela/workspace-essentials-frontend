@@ -4,6 +4,7 @@ const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
+  const [toastMessage, setToastMessage] = useState(""); // Tracks active alert message
 
   const addToCart = (product) => {
     setCart((prevCart) => {
@@ -15,6 +16,14 @@ export function CartProvider({ children }) {
       }
       return [...prevCart, { ...product, quantity: 1 }];
     });
+
+    // Trigger custom toast notification banner
+    setToastMessage(`Added ${product.name} to cart!`);
+    
+    // Auto-clear the toast notification after 2.5 seconds
+    setTimeout(() => {
+      setToastMessage("");
+    }, 2500);
   };
 
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
@@ -22,6 +31,13 @@ export function CartProvider({ children }) {
   return (
     <CartContext.Provider value={{ cart, addToCart, cartCount }}>
       {children}
+      
+      {/* Sleek, dynamic floating toast component banner */}
+      {toastMessage && (
+        <div className="fixed bottom-5 right-5 bg-stone-900 text-stone-100 text-sm font-medium px-5 py-3.5 rounded-xl shadow-xl z-50 flex items-center gap-2 border border-stone-800 animate-fade-in-up">
+          <span className="text-emerald-400">✓</span> {toastMessage}
+        </div>
+      )}
     </CartContext.Provider>
   );
 }
