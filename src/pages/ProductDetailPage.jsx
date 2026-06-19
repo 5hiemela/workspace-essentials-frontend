@@ -62,7 +62,7 @@ function ProductDetailPage() {
           </div>
 
           <button className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-3 px-6 rounded-xl transition-colors text-center text-sm shadow-sm mt-4">
-            Add to Workspace Setup
+            Add to Cart
           </button>
         </div>
       </div>
