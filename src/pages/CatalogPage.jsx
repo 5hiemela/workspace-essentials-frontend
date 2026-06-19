@@ -1,7 +1,6 @@
 import ProductCard from "../components/ProductCard";
 
-function CatalogPage() {
-  // Mock data array
+function CatalogPage({ onSelectProduct }) {
   const sampleProducts = [
     { id: 1, name: "Mechanical Keyboard (Linear)", price: 89.99, description: "Hot-swappable switches with dense, sound-dampening foam layers." },
     { id: 2, name: "Premium Felt Desk Mat", price: 34.50, description: "Eco-friendly merino wool felt protects your desk and upgrades your mouse glide." },
@@ -11,17 +10,21 @@ function CatalogPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
-      {/* Header section */}
       <div className="mb-10 text-left">
         <h1 className="text-3xl font-bold text-stone-800 tracking-tight mb-2">Workspace Catalog</h1>
         <p className="text-stone-600">Upgrade your daily setup with our curated essentials.</p>
       </div>
 
-      {/* The Product Grid */}
-      {/* grid-cols-1 on phone, grid-cols-2 on tablet, grid-cols-4 on desktop */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {sampleProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          // Wrapped in a clickable interactive div to trigger the view switch
+          <div 
+            key={product.id} 
+            onClick={() => onSelectProduct(product)}
+            className="cursor-pointer transform hover:-translate-y-1 transition-transform duration-200"
+          >
+            <ProductCard product={product} />
+          </div>
         ))}
       </div>
     </div>
