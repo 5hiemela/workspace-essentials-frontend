@@ -1,11 +1,13 @@
-import React from 'react'
+import CatalogPage from "./pages/CatalogPage";
 
 function App() {
   return (
-    <div>
-      <h1>Welcome to the E-Commerce Store</h1>
+    <div className="min-h-screen bg-stone-50 text-center pt-12">
+      <main>
+        <CatalogPage />
+      </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
