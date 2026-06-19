@@ -40,8 +40,8 @@ The frontend operates independently from the backend. The user interface runs en
 * [X] Implement product detail view pages
 
 ### Phase 3: State & Backend Integration
-* [ ] Integrate React Router for multi-page navigation (Home, Cart, Product View)
-* [ ] Implement global state for shopping cart management
+* [X] Integrate React Router for multi-page navigation (Home, Cart, Product View)
+* [X] Implement global state for shopping cart management
 * [ ] Integrate API service layer to fetch live data from Spring Boot backend
 
 ### Phase 4: User Experience & Polish
