@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 
-function CatalogPage({ onSelectProduct }) {
+function CatalogPage() {
   const sampleProducts = [
     { id: 1, name: "Mechanical Keyboard (Linear)", price: 89.99, description: "Hot-swappable switches with dense, sound-dampening foam layers." },
     { id: 2, name: "Premium Felt Desk Mat", price: 34.50, description: "Eco-friendly merino wool felt protects your desk and upgrades your mouse glide." },
@@ -17,14 +18,13 @@ function CatalogPage({ onSelectProduct }) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {sampleProducts.map((product) => (
-          // Wrapped in a clickable interactive div to trigger the view switch
-          <div 
+          <Link 
             key={product.id} 
-            onClick={() => onSelectProduct(product)}
-            className="cursor-pointer transform hover:-translate-y-1 transition-transform duration-200"
+            to={`/product/${product.id}`}
+            className="transform hover:-translate-y-1 transition-transform duration-200 block"
           >
             <ProductCard product={product} />
-          </div>
+          </Link>
         ))}
       </div>
     </div>
