@@ -1,28 +1,57 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { useCart } from "../services/CartContext"; // Import custom hook
+import { useCart } from "../services/CartContext";
+import { fetchProductById } from "../services/api";
 
 function ProductDetailPage() {
   const { id } = useParams();
-  const { addToCart } = useCart(); // Pull the global add function out of context
+  const { addToCart } = useCart();
   
-  // Local state to track selected quantity (default to 1)
+  // State for dynamic database values
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
 
-  const sampleProducts = [
-    { id: 1, name: "Mechanical Keyboard (Linear)", price: 89.99, description: "Hot-swappable switches with dense, sound-dampening foam layers." },
-    { id: 2, name: "Premium Felt Desk Mat", price: 34.50, description: "Eco-friendly merino wool felt protects your desk and upgrades your mouse glide." },
-    { id: 3, name: "Ergonomic Vertical Mouse", price: 65.00, description: "Designed to sit at a natural handshake angle to reduce wrist fatigue during coding sessions." },
-    { id: 4, name: "Walnut Monitor Riser", price: 79.99, description: "Solid hardwood construction with integrated slots for cable management." }
-  ];
+  useEffect(() => {
+    setLoading(true);
+    fetchProductById(id)
+      .then((data) => {
+        setProduct(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError("Could not retrieve details for this workspace essential.");
+        setLoading(false);
+      });
+  }, [id]); // Re-run if the URL ID parameter changes
 
-  const product = sampleProducts.find((p) => p.id === parseInt(id)) || sampleProducts[0];
-  const { name, price, description } = product;
-
-  // Handle firing the item up to the global cloud state
   const handleAddToCart = () => {
+    if (product) {
       addToCart(product, quantity);
+    }
   };
+
+  if (loading) {
+    return (
+      <div className="flex-grow flex items-center justify-center py-20">
+        <p className="text-stone-500 animate-pulse font-medium">Loading component specifications...</p>
+      </div>
+    );
+  }
+
+  if (error || !product) {
+    return (
+      <div className="flex-grow flex items-center justify-center py-20">
+        <p className="text-red-600 bg-red-50 border border-red-200 px-4 py-2 rounded-xl text-sm font-medium">
+          {error || "Product not found."}
+        </p>
+      </div>
+    );
+  }
+
+  const { name, price, description } = product;
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-10 text-left">
@@ -67,7 +96,6 @@ function ProductDetailPage() {
               </div>
             </div>
 
-            {/* Quantity Selector Dropdown Matrix */}
             <div className="flex items-center gap-3 mb-6">
               <label htmlFor="quantity" className="text-sm font-medium text-stone-600">Quantity:</label>
               <select 
