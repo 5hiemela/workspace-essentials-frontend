@@ -1,30 +1,55 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { fetchProducts } from "../services/api";
 import ProductCard from "../components/ProductCard";
 
 function CatalogPage() {
-  const sampleProducts = [
-    { id: 1, name: "Mechanical Keyboard (Linear)", price: 89.99, description: "Hot-swappable switches with dense, sound-dampening foam layers." },
-    { id: 2, name: "Premium Felt Desk Mat", price: 34.50, description: "Eco-friendly merino wool felt protects your desk and upgrades your mouse glide." },
-    { id: 3, name: "Ergonomic Vertical Mouse", price: 65.00, description: "Designed to sit at a natural handshake angle to reduce wrist fatigue during coding sessions." },
-    { id: 4, name: "Walnut Monitor Riser", price: 79.99, description: "Solid hardwood construction with integrated slots for cable management." }
-  ];
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchProducts()
+      .then((data) => {
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError("Failed to load workspace items from the server.");
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex-grow flex items-center justify-center py-20">
+        <p className="text-stone-500 animate-pulse font-medium">Loading premium inventory...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex-grow flex items-center justify-center py-20">
+        <p className="text-red-600 bg-red-50 border border-red-200 px-4 py-2 rounded-xl text-sm font-medium">
+          {error}
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10">
-      <div className="mb-10 text-left">
-        <h1 className="text-3xl font-bold text-stone-800 tracking-tight mb-2">Workspace Catalog</h1>
-        <p className="text-stone-600">Upgrade your daily setup with our curated essentials.</p>
+    <div className="max-w-7xl mx-auto px-6 py-10 flex-grow">
+      <div className="text-left mb-10">
+        <h1 className="text-3xl font-bold text-stone-950 tracking-tight mb-2">Workspace Catalog</h1>
+        <p className="text-stone-500 text-sm max-w-xl leading-relaxed">
+          Carefully selected high-performance essentials designed to enhance architectural flow and focus throughout your daily engineering pipeline.
+        </p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {sampleProducts.map((product) => (
-          <Link 
-            key={product.id} 
-            to={`/product/${product.id}`}
-            className="transform hover:-translate-y-1 transition-transform duration-200 block"
-          >
-            <ProductCard product={product} />
-          </Link>
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </div>
