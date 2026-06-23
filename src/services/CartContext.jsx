@@ -4,7 +4,7 @@ const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
-  const [toastMessage, setToastMessage] = useState(""); // Tracks active alert message
+  const [toastMessage, setToastMessage] = useState("");
 
   // Add qty parameter with a fallback default of 1
   const addToCart = (product, qty = 1) => {
@@ -24,21 +24,31 @@ export function CartProvider({ children }) {
         : `Added ${product.name} to cart!`;
         
     setToastMessage(messageText);
-    
-    // Auto-clear the toast notification after 2.5 seconds
-    setTimeout(() => {
-      setToastMessage("");
-    }, 2500);
+    setTimeout(() => setToastMessage(""), 2500);
+  };
+
+  const updateQuantity = (productId, quantity) => {
+    if (quantity <= 0) {
+      removeFromCart(productId);
+      return;
+    }
+    setCart((prevCart) =>
+      prevCart.map((item) => (item.id === productId ? { ...item, quantity } : item))
+    );
+  };
+
+  const removeFromCart = (productId) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
   };
 
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, cartCount }}>
+    <CartContext.Provider value={{ cart, addToCart, updateQuantity, removeFromCart, cartCount }}>
       {children}
       
       {toastMessage && (
-        <div className="fixed bottom-5 right-5 bg-stone-900 text-stone-100 text-sm font-medium px-5 py-3.5 rounded-xl shadow-xl z-50 flex items-center gap-2 border border-stone-800 animate-fade-in-up">
+        <div className="fixed bottom-5 right-5 bg-stone-900 text-stone-100 text-sm font-medium px-5 py-3.5 rounded-xl shadow-xl z-50 flex items-center gap-2 border border-stone-800">
           <span className="text-emerald-400">✓</span> {toastMessage}
         </div>
       )}
