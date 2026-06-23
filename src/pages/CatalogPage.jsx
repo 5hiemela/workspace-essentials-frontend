@@ -41,7 +41,7 @@ function CatalogPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-10 flex-grow">
       <div className="text-left mb-10">
-        <h1 className="text-3xl font-bold text-stone-950 tracking-tight mb-2">Workspace Catalog</h1>
+        <h1 className="text-3xl font-bold text-stone-950 tracking-tight mb-2">Catalog</h1>
         <p className="text-stone-500 text-sm max-w-xl leading-relaxed">
           High-quality workspace essentials built for your daily routine.
         </p>
