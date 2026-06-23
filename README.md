@@ -1,6 +1,8 @@
-# E-Commerce Frontend App
+# Workspace Essentials - Frontend
 
-The user interface for a full-stack e-commerce store. It allows users to browse products, manage a shopping cart, and interact directly with backend services.
+The user interface for a full-stack tech store. It allows users to browse products, manage a shopping cart, and interact directly with backend services.
+
+![Application Demo](demo.gif)
 
 ---
 
@@ -47,3 +49,22 @@ The frontend operates independently from the backend. The user interface runs en
 ### Phase 4: User Experience & Polish
 * [X] Add loading indicators and error handling for API requests
 * [X] Build checkout and order summary views
+
+---
+
+## How to Run
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/5hiemela/workspace-essentials-frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
