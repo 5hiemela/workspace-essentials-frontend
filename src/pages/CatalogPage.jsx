@@ -43,7 +43,7 @@ function CatalogPage() {
       <div className="text-left mb-10">
         <h1 className="text-3xl font-bold text-stone-950 tracking-tight mb-2">Workspace Catalog</h1>
         <p className="text-stone-500 text-sm max-w-xl leading-relaxed">
-          Carefully selected high-performance essentials designed to enhance architectural flow and focus throughout your daily engineering pipeline.
+          High-quality workspace essentials built for your daily routine.
         </p>
       </div>
 
