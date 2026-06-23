@@ -54,17 +54,17 @@ The frontend operates independently from the backend. The user interface runs en
 
 ## How to Run
 
-1. Clone the repository:
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/5hiemela/workspace-essentials-frontend
    ```
 
-2. Install dependencies:
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. Start the development server:
+3. **Start the development server:**
    ```bash
    npm run dev
    ```
