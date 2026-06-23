@@ -46,4 +46,4 @@ The frontend operates independently from the backend. The user interface runs en
 
 ### Phase 4: User Experience & Polish
 * [X] Add loading indicators and error handling for API requests
-* [ ] Build checkout and order summary views
+* [X] Build checkout and order summary views
