@@ -28,25 +28,25 @@ The frontend operates independently from the backend. The user interface runs en
 
 ---
 
-## Project Roadmap
+## Completed Features
 
-### Phase 1: Setup
+### Setup
 * [x] Initialize React project with Vite
 * [x] Set up Git/GitHub repositories and independent version control
 * [X] Establish project directory structure (`components`, `pages`, `services`, `assets`)
 * [X] Select and configure global styling framework
 
-### Phase 2: Core UI Components
+### Core UI Components
 * [X] Build navigation bar and footer
 * [X] Design product grid and catalog cards
 * [X] Implement product detail view pages
 
-### Phase 3: State & Backend Integration
+### State & Backend Integration
 * [X] Integrate React Router for multi-page navigation (Home, Cart, Product View)
 * [X] Implement global state for shopping cart management
 * [X] Integrate API service layer to fetch live data from Spring Boot backend
 
-### Phase 4: User Experience & Polish
+### User Experience & Polish
 * [X] Add loading indicators and error handling for API requests
 * [X] Build checkout and order summary views
 
