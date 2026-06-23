@@ -45,6 +45,5 @@ The frontend operates independently from the backend. The user interface runs en
 * [X] Integrate API service layer to fetch live data from Spring Boot backend
 
 ### Phase 4: User Experience & Polish
-* [ ] Add loading indicators and error handling for API requests
+* [X] Add loading indicators and error handling for API requests
 * [ ] Build checkout and order summary views
-* [ ] Optimize application responsiveness for mobile and tablet screens
