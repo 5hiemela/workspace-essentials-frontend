@@ -13,7 +13,7 @@ The user interface for a full-stack tech store. It allows users to browse produc
 * **Package Manager:** npm
 * **State Management:** Context API / React Hooks
 * **Routing:** React Router DOM
-* **Styling:** Tailwind CSS / Bootstrap / Custom CSS
+* **Styling:** Tailwind CSS / Custom CSS
 
 ---
 
